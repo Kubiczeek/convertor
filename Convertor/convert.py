@@ -7,7 +7,7 @@ userInputNumber = input('Input number: ')
 userInputFormatInput = int(
     input('What is inputted number?(binary - 1; decimal - 2; hexadecimal - 3) '))
 userInputFormatOutput = int(input(
-    'What is the outputted number?(binary - 1; decimal - 2; hexadecimal - 3) '))
+    'What is the outputted number?(binary - 1; decimal - 2; hexadecimal - 3; all - 5) '))
 
 cheatSheet = {0: "0", 1: "1", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8", 9: "9", 10: "A", 11: "B", 12: "C", 13: "D", 14: "E", 15: "F"}
 cheatSheet2 = {"0": "0000", "1": "0001", "2": "0010", "3": "0011", "4": "0100", "5": "0101", "6": "0110", "7": "0111", "8": "1000", "9": "1001", "A": "1010", "B": "1011", "C": "1100", "D": "1101", "E": "1110", "F": "1111"}
@@ -78,6 +78,7 @@ def binaryToDecimal(num):
 	print("1)  "+finalString[:-2] + "	- We'll be multiplying the numbers now.")
 	print("2)  "+finalString2[:-2] + "			- Now, just the addition left.")
 	print("3)  "+str(finalNumber))
+	return finalNumber
 
 def binaryToHex(num):
 	inputList = [int(i) for i in str(num)]
@@ -112,6 +113,7 @@ def binaryToHex(num):
 	print("\nMethod:")
 	print("1)   " + spacedString)
 	print("2)   " + spacedString2)
+	return finalString
 
 
 def decimalToBinary(num):
@@ -129,6 +131,7 @@ def decimalToBinary(num):
 	print("".join(endList))
 	print("\nMethod:")
 	print(tabulate(endList2, headers='firstrow', tablefmt='grid'))
+	return "".join(endList)
 
 def decimalToHex(num):
 	changingNum = int(num)
@@ -145,6 +148,7 @@ def decimalToHex(num):
 	print("".join(endList))
 	print("\nMethod:")
 	print(tabulate(endList2, headers='firstrow', tablefmt='grid'))
+	return "".join(endList)
 
 
 def hexToBinary(num):
@@ -163,6 +167,7 @@ def hexToBinary(num):
 	print("1)	" + spacedString)
 	print("2)	" + spacedString2)
 	print("3)	" + "".join(endList))
+	return "".join(endList)
 
 def hexToDecimal(num):
 	inputList = [*num]
@@ -183,7 +188,17 @@ def hexToDecimal(num):
 	print("1)  "+finalString[:-2])
 	print("2)  "+finalString2[:-2])
 	print("3)  "+str(finalNumber))
+	return finalNumber
 	
+
+def outputAll(num1, num2, num3):
+	clear()
+	print("\nAnswer:\n")
+	print("Bin: "+ num1)
+	print("Dec: "+ num2)
+	print("Hex: "+ num3)
+	print("Ascci: "+ chr(int(num2)))
+
 
 def Solve(number, choice, output):
 	if choice == 1:
@@ -191,16 +206,22 @@ def Solve(number, choice, output):
 			binaryToDecimal(number)
 		elif output == 3:
 			binaryToHex(number)
+		elif output == 5:
+			outputAll(number, str(binaryToDecimal(number)), str(binaryToHex(number)))
 	elif choice == 2:
 		if output == 1:
 			decimalToBinary(number)
 		elif output == 3:
 			decimalToHex(number)
+		elif output == 5:
+			outputAll(str(decimalToBinary(number)), number, str(decimalToHex(number)))
 	elif choice == 3:
 		if output == 1:
 			hexToBinary(number)
 		elif output == 2:
 			hexToDecimal(number)
+		elif output == 5:
+			outputAll(str(hexToBinary(number)), str(hexToDecimal(number)), str(number))
 	
 if userInputFormatInput == userInputFormatOutput:
 	print('Input format cannot be the same as output')
